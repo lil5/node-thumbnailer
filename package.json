@@ -1,0 +1,24 @@
+{
+  "author": {
+    "name": "Rick Pelletier",
+    "email": "ricknpc@gmail.com"
+  },
+  "name": "thumbnailer",
+  "description": "Create a thumbnail of every file in a directory",
+  "version": "0.1.0",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/ricknpc/node-thumbnailer.git"
+  },
+  "dependencies": {
+      "mkdirp": "*"
+  },
+  "devDependencies": {},
+  "optionalDependencies": {},
+  "engines": {
+    "node": "*"
+  },
+  "bin": {
+    "thumbnailer": "bin/thumbnailer.bin.js"
+  }
+}
