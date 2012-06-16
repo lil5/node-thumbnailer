@@ -11,6 +11,7 @@ var fs = require('fs'),
 
     initial_path,
     target_path,
+    inplace,
     geometry,
     callback;
 
@@ -19,6 +20,7 @@ module.exports = function(startdir, targetdir, geo, cb) {
     target_path = targetdir;
     geometry = geo;
     callback = cb;
+    inplace = (target_path == null || target_path == '');
 
     check_path(initial_path);
 }
@@ -42,11 +44,17 @@ function explore_dir(dir) {
 }
 
 function make_thumb(file) {
-    //TODO: allow for in-place (mogrify)
-	var new_file = path.resolve(target_path, path.relative(initial_path, file)),
-		command = 'convert "' + file + '" -resize ' + geometry + ' "' + new_file + '"';
+    var new_file, command, startprocess;
 
-    mkdirp(new_file.replace(/[\/\\][^\/\\]+$/, ''), function() {
+    if (inplace) {
+        new_file = file;
+        command = 'mogrify -resize ' + geometry + ' "' + file + '"';
+    } else {
+        new_file = path.resolve(target_path, path.relative(initial_path, file));
+        command = 'convert "' + file + '" -resize ' + geometry + ' "' + new_file + '"';
+    }
+
+    startprocess = function() {
         if (children < 8) {
             children++;
             child_process.exec(command, function(err, stdout, stderr) {
@@ -58,7 +66,10 @@ function make_thumb(file) {
                 new_file: new_file
             });
         }
-    });
+    };
+
+    if (inplace) startprocess();
+    else mkdirp(new_file.replace(/[\/\\][^\/\\]+$/, ''), startprocess);
 }
 
 function process_finished(err, stdout, stderr, new_file, command) {
