@@ -20,15 +20,12 @@ var thumbnailer = require('thumbnailer');
 thumbnailer(startdir, targetdir, geometry, callback);
 ```
 
-`startdir` can be a filename instead. `targetdir` will soon accept `null` instead of a dir, to overwrite each file instead. Callback is optional.
+`startdir` can be a filename instead. `targetdir` will accept `null` instead of a dir, to overwrite each file instead. Callback is optional.
 
 ####Global (command-line)
 ```
 thumbnailer <startdir> <targetdir or --inplace> <geometry>
 ```
-
-`--inplace` is not yet implemented.
-
 
 ##License
 
