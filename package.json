@@ -11,10 +11,11 @@
     "url": "git://github.com/ricknpc/node-thumbnailer.git"
   },
   "dependencies": {
-      "mkdirp": "*"
+    "mkdirp": "*"
   },
   "devDependencies": {
-      "nodeunit": "*"
+    "nodeunit": "*",
+    "wrench": "*"
   },
   "optionalDependencies": {},
   "engines": {
