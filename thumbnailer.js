@@ -23,7 +23,7 @@ module.exports = function(startdir, targetdir, geo, cb) {
     inplace = (target_path == null || target_path == '');
 
     check_path(initial_path);
-}
+};
 
 
 function check_path(filepath) {
@@ -73,7 +73,6 @@ function make_thumb(file) {
 }
 
 function process_finished(err, stdout, stderr, new_file, command) {
-	process.stdout.write(stdout);
 	if (err) { console.log(err); return; }
     else console.log('Wrote '+new_file);
 	

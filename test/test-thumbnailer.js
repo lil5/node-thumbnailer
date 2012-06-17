@@ -19,7 +19,7 @@ exports.as_include = nodeunit.testCase({
 
         child_process.exec = function(command, callback) {
             test.equal(command, 'convert "test/images/image.png" -resize 50% "X:\\scripts\\thumbnailer\\test\\test-results\\image.png"');
-            self._exec(command, callback);
+            //self._exec(command, callback); //this would make more sense for other
         };
 
         thumbnailer('test/images/image.png', 'test/test-results/image.png', '50%', function() {
