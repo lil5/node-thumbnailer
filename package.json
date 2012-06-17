@@ -13,7 +13,9 @@
   "dependencies": {
       "mkdirp": "*"
   },
-  "devDependencies": {},
+  "devDependencies": {
+      "nodeunit": "*"
+  },
   "optionalDependencies": {},
   "engines": {
     "node": "*"
