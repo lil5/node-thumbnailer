@@ -36,7 +36,8 @@ module.exports = nodeunit.testCase({
         test.expect(1);
 
         child_process.exec = function(command, callback) {
-            test.ok(true);
+            var expected = 'convert "' + single_path + '" -resize 50% "' + single_dest + '"';
+            test.equal(command, expected, 'Command line generated properly');
             child_process.exec = _exec;
             callback();
         };
@@ -49,8 +50,6 @@ module.exports = nodeunit.testCase({
     recursive: function(test) {
         var deepest = path.resolve(this.dest_path, 'subfolder/nested subfolder/lame reference.gif');
         test.expect(1);
-
-        console.log(child_process.exec);
 
         thumbnailer(this.imgs_path, this.dest_path, '50%', function() {
             fs.stat(deepest, function(err, stats) {
@@ -67,7 +66,7 @@ module.exports = nodeunit.testCase({
         test.expect(1);
 
         child_process.exec = function(command, callback) {
-            test.ok(true);
+            test.ok(command.match(/^mogrify/));
             child_process.exec = _exec;
             callback();
         };
